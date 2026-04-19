@@ -1,6 +1,6 @@
 # Multi-Container Runtime with Supervisor and Kernel Memory Monitor
 
-A lightweight Linux container runtime in C that supports multiple concurrent containers under a long-running supervisor, bounded-buffer logging, a CLI control plane, kernel-space memory monitoring with soft and hard limits, and scheduling experiments on Linux.
+A lightweight Linux container runtime in C that supports multiple concurrent containers under a long-running supervisor, bounded-buffer logging, a CLI control plane, kernel-space memory monitoring with soft and hard limits and scheduling experiments on Linux.
 
 ---
 
