@@ -15,6 +15,12 @@ SRN : PES1UG24CS393 <br />
 
 ---
 
+## Course Information
+- Course Name : Operating Systems
+- Course Code : UE24CS242B
+
+---
+
 ## Project Overview
 
 This project implements a small Linux container runtime with two tightly integrated components:
