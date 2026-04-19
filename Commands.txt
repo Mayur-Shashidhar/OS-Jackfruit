@@ -1,0 +1,57 @@
+1. Multi-container supervision
+Bash
+sudo ./engine supervisor ./rootfs-base
+👉 New terminal:
+Bash
+sudo ./engine start alpha ./rootfs-alpha /bin/sh
+sudo ./engine start beta ./rootfs-beta /bin/sh
+
+2. Metadata tracking (ps)
+Bash
+sudo ./engine ps
+
+3. Bounded-buffer logging
+Bash
+./cpu_hog &
+Then:
+Bash
+cat logs/alpha.log
+OR live:
+Bash
+tail -f logs/alpha.log
+
+4. CLI and IPC
+Bash
+sudo ./engine ps
+OR:
+Bash
+sudo ./engine start gamma ./rootfs-alpha /bin/sh
+
+5. Soft-limit warning
+Run memory hog:
+Bash
+./memory_hog
+Then:
+Bash
+sudo dmesg | tail
+
+6. Hard-limit enforcement
+Continue running memory hog until killed:
+Bash
+sudo dmesg | tail
+
+7. Scheduling experiment
+Bash
+./cpu_hog &
+./io_pulse &
+top
+
+8. Clean teardown
+Bash
+sudo ./engine stop alpha
+sudo ./engine stop beta
+
+pkill cpu_hog
+pkill io_pulse
+
+ps aux | grep engine
