@@ -59,7 +59,8 @@ The runtime is designed for **Ubuntu 22.04/24.04 running inside a VM** with Secu
 
 ```bash
 .
-├── boilerplate
+├── Output Screenshots/
+├── boilerplate/
     ├── Makefile
     ├── cpu_hog.c
     ├── engine.c
