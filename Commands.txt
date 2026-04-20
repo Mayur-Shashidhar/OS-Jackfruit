@@ -1,57 +1,57 @@
 1. Multi-container supervision
 Bash
-sudo ./engine supervisor ./rootfs-base
+sudo ./engine supervisor ./rootfs-base  Starts the supervisor process to manage containers
 👉 New terminal:
 Bash
-sudo ./engine start alpha ./rootfs-alpha /bin/sh
-sudo ./engine start beta ./rootfs-beta /bin/sh
+sudo ./engine start alpha ./rootfs-alpha /bin/sh  Launches container 'alpha' under the supervisor
+sudo ./engine start beta ./rootfs-beta /bin/sh  Launches container 'beta' under the supervisor
 
 2. Metadata tracking (ps)
 Bash
-sudo ./engine ps
+sudo ./engine ps  Displays metadata and status of all running containers
 
 3. Bounded-buffer logging
 Bash
-./cpu_hog &
+./cpu_hog &  Generates continuous output workload
 Then:
 Bash
-cat logs/alpha.log
+cat logs/alpha.log  Shows stored logs captured by the logging pipeline
 OR live:
 Bash
-tail -f logs/alpha.log
+tail -f logs/alpha.log  Streams logs in real-time from the container
 
 4. CLI and IPC
 Bash
-sudo ./engine ps
+sudo ./engine ps  Sends a CLI request to supervisor via IPC and receives response
 OR:
 Bash
-sudo ./engine start gamma ./rootfs-alpha /bin/sh
+sudo ./engine start gamma ./rootfs-alpha /bin/sh  Demonstrates command transmission through control IPC
 
 5. Soft-limit warning
 Run memory hog:
 Bash
-./memory_hog
+./memory_hog  Consumes memory to cross soft limit threshold
 Then:
 Bash
-sudo dmesg | tail
+sudo dmesg | tail  Displays kernel log showing soft-limit warning
 
 6. Hard-limit enforcement
 Continue running memory hog until killed:
 Bash
-sudo dmesg | tail
+sudo dmesg | tail  Shows kernel message where container is killed due to hard limit
 
 7. Scheduling experiment
 Bash
-./cpu_hog &
-./io_pulse &
-top
+./cpu_hog &  CPU-bound workload consuming high CPU
+./io_pulse &  I/O-bound workload with intermittent execution
+top  Observes scheduling differences between workloads
 
 8. Clean teardown
 Bash
-sudo ./engine stop alpha
-sudo ./engine stop beta
+sudo ./engine stop alpha  Gracefully stops container 'alpha'
+sudo ./engine stop beta  Gracefully stops container 'beta'
 
-pkill cpu_hog
-pkill io_pulse
+pkill cpu_hog  Terminates CPU workload processes
+pkill io_pulse  Terminates I/O workload processes
 
-ps aux | grep engine
+ps aux | grep engine  Verifies no active containers or leftover processes
